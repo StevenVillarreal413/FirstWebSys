@@ -1,0 +1,18 @@
+body{
+    font-family: Verdana, Geneva, Tahoma, Sans-serif;
+    font-size: 1em;
+    margin: 20px;
+}
+
+.container{
+    display:flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    flex-flow: column;
+}
+
+.card{
+    background-color:lightgreen;
+    padding: 20px;
+    width: 400px;
+}
