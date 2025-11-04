@@ -1,13 +1,13 @@
 <?php
     require_once 'classDAO.php';
 
-    showErrors(1);
+    showErrors(0);
 
     $method=$_SERVER['REQUEST_METHOD'];
 
     if($method=='GET)'){
         $classDAO = new ClassDAO();
-        $contacts = $classDAO->getContacts();
+        $users = $classDAO->getContacts();
         include "home-view.php";
     }
 

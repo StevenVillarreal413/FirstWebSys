@@ -1,7 +1,7 @@
 <?php
-    require_once 'userinfo.php';
+    require_once 'user.php';
 
-    class classDAO{
+    class UserDAO{
 
         public function getConnection(){
             $mysqli = new mysqli("127.0.0.1", "mvcuser", "mvcpass", "patternMVCAuth");
@@ -17,11 +17,15 @@
             $state = $connection->prepare("SELECT * FROM users;");
             $state->execute();
             $result = $state->get_result();
+            $users = [];
             while($row = $result->fetch_assoc()){
-                $info = new userInfo.php();
+                $info = new User();
                 $info->load($row);
-                $userInfo[]=$info;
+                $users[]=$info;
             }
+            $state->close();
+            $connection->exit();
+            return $users;
         }
     }
 

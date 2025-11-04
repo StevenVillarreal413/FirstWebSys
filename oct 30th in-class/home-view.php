@@ -1,62 +1,59 @@
-<?php
-    require_once 'classDAO.php';
-
-    showErrors(0);
-    
-    $classDAO = new ClassDAO();
-    $userInfo=$classDAO->getContacts();
-
-    function showErrors($debug){
-        if($debug==1){
-            ini_set('display_errors', 1);
-            ini_set('display_startup_errors', 1);
-            error_reporting(E_ALL);
-        }
-    }
-?>
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>CS 2033 | List Contacts</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-  </head>
-  <body>
- 
-  
-    <!-- Image and text -->
-    <nav class="navbar navbar-light bg-light" style="margin-bottom: 20px">
-    <a class="navbar-brand" href="listContacts.php">
-        <img src="images/lion.png" width="12%" height="12%" class="d-inline-block align-middle" alt="">
-        CS 2033 Web Systems
-    </a>
-    </nav>
-    <div class="container">
-        <div class="col">
-        <a class="btn btn-primary" href="addContact.php" role="button">Add Contact</a>
-            <table class="table table-bordered table-striped">
-                <thead><tr><th>userID</th><th>User Name</th><th>Last Name</th><th>First Name</th><th>Password</th><th>Email</th><th>user roll</th><th>Last Modified</th></tr></thead>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>CSCE 20303 | Home</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    </head>
+    <body>
+        <nav class="navbar bg-body-tertiary mb-5">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                <img src="images/logo.png" height="40%" width="40%" alt="UAFS">
+                </a>
+            </div>
+        </nav>
+        <div class="container">
+            <a href="contactAddController.php" class="btn btn-primary">Add Contact</a>
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>User ID</th>
+                        <th>User Name</th>
+                        <th>Last Name</th>
+                        <th>First Name</th>
+                        <th>Password</th>
+                        <th>Email</th>
+                        <th>User Role</th>
+                        <th>Last Modified</th>
+                    </tr>
+                </thead>
                 <tbody>
                     <?php
-                        for($index=0;$index<count($userInfo);$index++){
-                            echo "<tr><td>".$userInfo[$index]->getUserID()."</td><td>";
-                            echo "<tr><td>".$userInfo[$index]->getUsername()."</td><td>";
-                            echo "<tr><td>".$userInfo[$index]->getLastName()."</td></tr>";
-                            echo "<tr><td>".$userInfo[$index]->getFirstName()."</td></tr>";
-                            echo "<tr><td>".$userInfo[$index]->getPasswd()."</td></tr>";                        
-                            echo "<tr><td>".$userInfo[$index]->getEmail()."</td></tr>";
-                            echo "<tr><td>" .$userInfo[$index]->getURole()."</td></tr>";                        
-                            echo "<tr><td>".$userInfo[$index]->getLastModified()."</td></tr>";
-
-                        }
+                        for($index=0;$index<count($users);$index++){
                     ?>
-                </tbody>        
-            </table>       
+                    <tr>
+                        <td><?php echo $users[$index]->userID ?></td>
+                        <td><?php echo $users[$index]->username ?></td>
+                        <td><?php echo $users[$index]->lastname ?></td>
+                        <td><?php echo $users[$index]->firstname ?></td>
+                        <td><?php echo $users[$index]->passwd ?></td>
+                        <td><?php echo $users[$index]->email ?></td>
+                        <td><?php echo $users[$index]->urole ?></td>
+                        <td><?php echo $users[$index]->lastModified ?></td>
+                        <td><a href="contactDeleteConfirmController.php?contactID=<?php echo $contacts[$index]-> contactID ?>" class = "btn btn-danger">Delete</a></td>
+                        <td><a href ="contactUpdateController.php?contactID=<?php echo $contacts[$index]-> contactID ?>" class = "btn btn-primary">Update</a></td>
+                    </tr>
+                    <?php
+                        }
+                    ?>        
+                </tbody>
+            </table>
         </div>
-    </div>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-  </body>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    </body>
 </html>
